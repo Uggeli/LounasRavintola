@@ -1,0 +1,67 @@
+﻿<table class="greyGridTable">
+        <thead>
+            <tr>
+                <th>
+                    <h3>Week @GetWeekNumber(Menu.Date) Menu</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (MenuItem item in Menu.MenuItems)
+        {
+            @if (item.Title != null)
+            {
+                <tr>
+                    <td>
+                        <div>
+                        <h5>@GetWeekDay(item.WeekDay)</h5>
+                            <div>@item.Title</div>
+                            <div>
+                                @if (item.L)
+                                {   
+                                    <text>L </text>
+                                }
+                                @if (item.G)
+                                {
+                                    <text>G </text>
+                                }
+                                @if (item.V)
+                                {
+                                    <text>V </text>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        -
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+
+
+@code{
+    [Parameter] public WeekMenu Menu { get; set; } = new WeekMenu();
+
+    private string GetWeekDay(int day)
+    {
+        WeekDay weekDay = (WeekDay) day;
+        return weekDay.ToString();
+    }
+
+    private int GetWeekNumber(DateTime date)
+    {
+        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+        Calendar cal = dfi.Calendar;
+        return cal.GetWeekOfYear(date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+    }
+
+
+}
