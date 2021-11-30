@@ -9,5 +9,15 @@ namespace LounasRavintola.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the LounasRavintolaUser class
 public class LounasRavintolaUser : IdentityUser
 {
+    public bool Admin { get; set; }
+
+    public LounasRavintolaUser()
+    {
+        
+    }
+
+    public LounasRavintolaUser(string userName) : base(userName)
+    {
+    }
 }
 

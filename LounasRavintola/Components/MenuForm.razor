@@ -1,8 +1,105 @@
-﻿<div>
+﻿@inject WeekMenuService MenuService
 
-</div>
+@if (MenuOpen)
+{
+    <EditForm Model="@newMenu" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <InputDate @bind-Value="newMenu.StartDate" />
+        <InputDate @bind-Value="newMenu.EndDate" />
+    </div>
+    <div>
+        Week @GetWeekNumber(newMenu.StartDate)
+    </div>
+        
 
 
-@code{
+    @foreach (MenuItem item in newMenuItems)
+    {   
+            <h5>@GetWeekDay(item.WeekDay)</h5>
 
+            <div class="form-group">
+                <label>Title</label>
+                <input placeholder="@item.Title" @bind="@item.Title"/>
+            </div>
+
+            <div>
+                <label>Notes</label>
+                <input type="text" @bind="@item.Notes">
+            </div>
+
+            <div class="from-group">
+                <label>Vegan</label>
+                <input type="checkbox" id="vegan" @bind="@item.V"/>
+                <label>Lactose</label>
+                <input type="checkbox" id="Lactose" @bind="@item.L"/>
+                <label>Glutein</label>
+                <input type="checkbox" id="glutein" @bind="@item.G"/>
+            </div>
+    }
+    <button @onclick="@AddToMenu" class="btn btn-success">@ButtonText</button>
+    <button @onclick="()=> MenuOpen = !MenuOpen" class="btn btn-danger">Cancel</button>
+    </EditForm>
+    }
+else
+    {
+        <button @onclick="()=> MenuOpen = !MenuOpen" class="btn btn-success">AddMenu</button>
+    }
+
+
+@code {
+    [Parameter] public WeekMenu newMenu {get; set;} = new WeekMenu();
+    [Parameter] public string ButtonText { get; set; } = "Save Menu";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+    List<MenuItem> newMenuItems = new List<MenuItem>();
+
+    public bool MenuOpen { get; set; } = false;
+
+    public string GetWeekDay(int day)
+    {
+        WeekDay weekDay = (WeekDay) day;
+        return weekDay.ToString();
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (newMenu.MenuItems.Count > 0)
+        {
+            newMenuItems = newMenu.MenuItems;
+        }
+        else
+        {
+            createNewItemList();
+        }          
+    }
+
+    private async void createNewItemList()
+    {
+        newMenuItems = new List<MenuItem>();
+        for (int i = 0; i < 5; i++)
+        {
+            MenuItem newItem = new MenuItem{WeekDay=i};
+            newMenuItems.Add(newItem);
+        }
+    }
+
+
+    private async Task AddToMenu()
+    {
+        newMenu.MenuItems = newMenuItems;
+        await MenuService.AddMenuAsync(newMenu);
+        newMenu = new WeekMenu();
+        createNewItemList();
+        MenuOpen = !MenuOpen;
+    }
+
+    private int GetWeekNumber(DateTime date)
+    {
+        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+        Calendar cal = dfi.Calendar;
+        return cal.GetWeekOfYear(date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+    }
 }

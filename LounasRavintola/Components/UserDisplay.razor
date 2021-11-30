@@ -1,0 +1,25 @@
+﻿@inject UserDataService UserService
+
+
+<div>
+    @foreach (LounasRavintolaUser User in Users)
+   {
+       <div>
+           @User.UserName
+       </div>
+   }
+</div>
+
+
+    
+
+@code{
+    public List<LounasRavintolaUser> Users { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Users = await UserService.GetLounasRavintolaUsers();
+    }
+
+}

@@ -2,7 +2,8 @@
         <thead>
             <tr>
                 <th>
-                    <h3>Week @GetWeekNumber(Menu.Date) Menu</h3>
+                    <h3>Week @GetWeekNumber(Menu.StartDate) Menu</h3>
+                    <text>@Menu.StartDate.ToString("d/M/yyyy") - @Menu.EndDate.ToString("d/M/yyyy")</text>
                 </th>
             </tr>
         </thead>
@@ -45,10 +46,30 @@
         }
         </tbody>
     </table>
+    <div>
+        @if(Previous != null)
+        {
+        <button @onclick="@(() => Update.InvokeAsync(Previous))">Previous</button>
+        }else
+        {
+            <button disabled>Previous</button>
+        }
+        @if(Next != null)
+        {
+        <button @onclick="@(() => Update.InvokeAsync(Next))">Next</button>
+        }
+        else
+        {
+        <button disabled>Next</button>
+        }
+</div>
 
 
 @code{
     [Parameter] public WeekMenu Menu { get; set; } = new WeekMenu();
+    [Parameter] public WeekMenu? Previous { get; set; }
+    [Parameter] public WeekMenu? Next { get; set; }
+    [Parameter] public EventCallback<WeekMenu> Update { get; set; }
 
     private string GetWeekDay(int day)
     {
@@ -62,6 +83,7 @@
         Calendar cal = dfi.Calendar;
         return cal.GetWeekOfYear(date, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
     }
+
 
 
 }

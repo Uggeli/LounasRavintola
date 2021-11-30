@@ -21,4 +21,6 @@ namespace LounasRavintola.Data
         Thursday,
         Friday
     }
+
+    
 }

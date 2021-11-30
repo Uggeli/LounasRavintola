@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LounasRavintola.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20211125231836_SeedAdmin_and_CreateSchema")]
-    partial class SeedAdmin_and_CreateSchema
+    [Migration("20211128084049_CreateUserSchema")]
+    partial class CreateUserSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,17 +87,17 @@ namespace LounasRavintola.Migrations
                         {
                             Id = "9ac4cd36-3a52-4515-a3fc-416c69f2f69b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "896abff6-5d62-421f-8b2e-380d3804f2ef",
+                            ConcurrencyStamp = "1cff70ba-1713-43a6-b7d9-74ebf10bc2cc",
                             Email = "kampela@kampela.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "KAMPELA@KAMPELA.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAENVgY65V7BYNihB86X7yHFFRK/s/v/CYvMs40dYfcyvhn4jKLjxmE6R71Dr4FrZHqQ==",
+                            NormalizedUserName = "KAMPELA@KAMPELA.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOIfmwWoY5RML0b+qLzc494PUEr/EyXR+3N9t7WdLnlyBbCsdzSZFVT0vOrdrGaSZA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "admin"
+                            UserName = "kampela@kampela.com"
                         });
                 });
 

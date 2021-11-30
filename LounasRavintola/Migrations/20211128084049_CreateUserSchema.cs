@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LounasRavintola.Migrations
 {
-    public partial class SeedAdmin_and_CreateSchema : Migration
+    public partial class CreateUserSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,7 +162,7 @@ namespace LounasRavintola.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "9ac4cd36-3a52-4515-a3fc-416c69f2f69b", 0, "896abff6-5d62-421f-8b2e-380d3804f2ef", "kampela@kampela.com", true, false, null, "KAMPELA@KAMPELA.COM", "ADMIN", "AQAAAAEAACcQAAAAENVgY65V7BYNihB86X7yHFFRK/s/v/CYvMs40dYfcyvhn4jKLjxmE6R71Dr4FrZHqQ==", null, false, "", false, "admin" });
+                values: new object[] { "9ac4cd36-3a52-4515-a3fc-416c69f2f69b", 0, "1cff70ba-1713-43a6-b7d9-74ebf10bc2cc", "kampela@kampela.com", true, false, null, "KAMPELA@KAMPELA.COM", "KAMPELA@KAMPELA.COM", "AQAAAAEAACcQAAAAEOIfmwWoY5RML0b+qLzc494PUEr/EyXR+3N9t7WdLnlyBbCsdzSZFVT0vOrdrGaSZA==", null, false, "", false, "kampela@kampela.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

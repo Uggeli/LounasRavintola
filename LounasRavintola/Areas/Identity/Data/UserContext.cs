@@ -35,10 +35,10 @@ public class UserContext : IdentityDbContext<LounasRavintolaUser>
         LounasRavintolaUser lounasRavintolaUser = new LounasRavintolaUser
         {
             Id = ADMIN_ID,
-            UserName = "admin",
-            NormalizedUserName = "admin".ToUpper(),
             Email = "kampela@kampela.com",
             NormalizedEmail = "kampela@kampela.com".ToUpper(),
+            UserName = "kampela@kampela.com",
+            NormalizedUserName = "kampela@kampela.com".ToUpper(),
             EmailConfirmed = true,
             SecurityStamp = string.Empty
         };

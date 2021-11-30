@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LounasRavintola.Migrations.WeekMenu
 {
     [DbContext(typeof(WeekMenuContext))]
-    [Migration("20211125224021_CreateMenuSChema")]
-    partial class CreateMenuSChema
+    [Migration("20211129063354_menu")]
+    partial class menu
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,7 +60,10 @@ namespace LounasRavintola.Migrations.WeekMenu
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

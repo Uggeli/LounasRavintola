@@ -1,0 +1,18 @@
+﻿<EditForm Model="@User" OnInvalidSubmit="@OnValidSubmit">
+    <div class="form-group">
+        <input placeholder="UserName" @bind="@User.UserName" type="text"/>
+    </div>
+
+
+    <button @onclick=@OnValidSubmit class="btn btn-success">@ButtonText</button>
+</EditForm>
+
+
+
+
+@code{
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+    [Parameter] public LounasRavintolaUser User { get; set; } = new LounasRavintolaUser();
+    [Parameter] public string ButtonText { get; set; } = "Create New User";
+
+}
